@@ -97,6 +97,7 @@ textarea:focus{
 .search input{
     border: none;
     background: none;
+    width: 100%;
 }
 
 .search-icon{

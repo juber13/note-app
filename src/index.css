@@ -124,7 +124,7 @@ textarea:focus{
 
 .flashmesage{
     width: 200px;
-    background-color: #ddd;
+    background:#ddd;
     color: green;
     font-weight: bold;
     padding: 1rem;

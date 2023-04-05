@@ -11,7 +11,6 @@ function App() {
     {id : 1 , text : "This is my first node" , date : "01/04/2023"},
     {id : 2 , text : "This is my second node" , date : "01/02/2023"},
     {id : 3 , text : "This is my third node" , date : "01/01/2023"},
-    {id : 4 , text : "This is my fourth node" , date : "01/14/2023"}
   ]);
   
   const [searchText , setSearchText] = useState("");

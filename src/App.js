@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NoteList from "./NoteList";
 import Search from "./Search";
 import Header from "./Header";
+import FlashMessage from "./FlashMessage";
 
 
 
@@ -15,7 +16,12 @@ function App() {
   
   const [searchText , setSearchText] = useState("");
   const [darkMode , setDarkMode] = useState(false);
+  const [showFlasMessage , setShowFlash] = useState(false);
+  const [message , setMesage] = useState("");
+
   const addNote = (text) => {
+    setShowFlash(true)
+    setMesage("Note added!!");
     const date  = new Date();
     const newNote = {
       id : notes.length + 1,
@@ -43,7 +49,13 @@ function App() {
      const newNotes = notes.filter(note => note.id !== id);
      setNotes(newNotes);
      addLoLocalStorage(newNotes);
+     setShowFlash(true)
+     setMesage("Note deleted!!");
   }
+
+  setTimeout(() => {
+    setShowFlash(false);
+  }, 1500);
 
   
 
@@ -53,6 +65,7 @@ function App() {
         <Header handleDarkMode={setDarkMode}/>
         <Search setSearchText={setSearchText}/>
         <NoteList notes={notes.filter(note => note.text.toLowerCase().includes(searchText))} addNote={addNote} handleDeleteNote={DeleteNote}/>
+        <FlashMessage showFlasMessage={showFlasMessage} message={message}/>
       </div>
     </div>
   );

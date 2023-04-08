@@ -1,11 +1,15 @@
 import React from 'react'
-import { MdDeleteForever } from 'react-icons/md'
+import { MdDeleteForever} from 'react-icons/md';
+import { FiEdit } from 'react-icons/fi';
 
 
-function Note({text , id , date , handleDeleteNote}) {
+
+function Note({text , id , date , handleDeleteNote , handleEdit}) {
   const formatText = (str) => {
     return str.slice(0 ,1).toUpperCase() + str.slice(1)
-  } 
+  }
+
+
   return (
     <div className='note' key={id}>
         <div className='note-text'>
@@ -13,7 +17,10 @@ function Note({text , id , date , handleDeleteNote}) {
         </div>
         <div className="note-footer">
             <small>{date}</small>
+            <div className="icons" style={{display : "flex" , alignItems : "center"}}>
+            <FiEdit className='edit-btn' onClick={() => handleEdit(id)}/>
             <MdDeleteForever className='delete-btn' onClick={() => handleDeleteNote(id)}/>
+            </div>
         </div>
     </div>
   )

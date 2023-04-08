@@ -8,62 +8,86 @@ import FlashMessage from "./FlashMessage";
 
 function App() {
   const [notes , setNotes] = useState([
-    {id : 1 , text : "This is my first node" , date : "01/04/2023"},
-    {id : 2 , text : "This is my second node" , date : "01/02/2023"},
-    {id : 3 , text : "This is my third node" , date : "01/01/2023"},
+    {id : 0 , text : "This is my first node" , date : "01/04/2023"},
+    {id : 1 , text : "This is my second node" , date : "01/02/2023"},
   ]);
   
   const [searchText , setSearchText] = useState("");
   const [darkMode , setDarkMode] = useState(false);
   const [showFlasMessage , setShowFlash] = useState(false);
-  const [message , setMesage] = useState("");
+  const [message , setMessage] = useState("");
+  const [isUpdating , setUpdating] = useState(false);
+  const [inputValue , setInputValue] = useState('');
+  const [index , setIndex] = useState(0)
+  const [color , setColor] = useState('');
 
   const addNote = (text) => {
     setShowFlash(true)
-    setMesage("Note added!!");
+    setMessage("Note added!");
     const date  = new Date();
     const newNote = {
-      id : notes.length + 1,
+      id : notes.length,
       text : text,
       date : date.toLocaleDateString(),
     }
+
+    console.log(notes);
 
     const newNotes = [...notes , newNote];
     setNotes(newNotes);
     addLoLocalStorage(newNotes);
   }
-
+  
+  
   useEffect(() => {
     const saveNotes = JSON.parse(localStorage.getItem('notes'));
     if(saveNotes) setNotes(saveNotes);
+    // if(darkMode)  setColor("#000");
    },[])
 
    const addLoLocalStorage = (note) => {
     localStorage.setItem('notes' , JSON.stringify(note))
   }
   
- 
 
   const DeleteNote = (id) => {
      const newNotes = notes.filter(note => note.id !== id);
      setNotes(newNotes);
      addLoLocalStorage(newNotes);
      setShowFlash(true)
-     setMesage("Note deleted!!");
+     setMessage("Note deleted!");
   }
 
   setTimeout(() => {
     setShowFlash(false);
-  }, 1500);
+  }, 1000);
 
-  
+
+  const handleEdit = (id) => {
+    setInputValue(notes[id].text);
+    setUpdating(true);
+    setIndex(id);
+  }
+
+  const handleUpdate = () => {
+    if(inputValue.trim().length > 0){
+      const newNotes = [...notes];
+      newNotes[index].text = inputValue;
+      setNotes(newNotes);
+      setInputValue("");
+      addLoLocalStorage(newNotes);
+      setUpdating(false);
+      setShowFlash(true)
+      setMessage("Note Updated!");
+    }
+  }
 
   return (
-    <div className={`${darkMode && 'dark-mode'}`}>
+    <div className={`${darkMode && 'dark-mode'}`} style={{backgroundColor : color}}>
       <div className="container">
-        <Header handleDarkMode={setDarkMode}/>
+        <Header handleDarkMode={setDarkMode} setColor={setColor} darkMode={darkMode}/>
         <Search setSearchText={setSearchText}/>
-        <NoteList notes={notes.filter(note => note.text.toLowerCase().includes(searchText))} addNote={addNote} handleDeleteNote={DeleteNote}/>
+        <NoteList notes={notes.filter(note => note.text.toLowerCase().includes(searchText))} addNote={addNote} handleDeleteNote={DeleteNote} handleEdit={handleEdit} isUpdating={isUpdating} inputValue={inputValue} setInputValue={setInputValue} handleUpdate={handleUpdate}/>
         <FlashMessage showFlasMessage={showFlasMessage} message={message}/>
       </div>
     </div>

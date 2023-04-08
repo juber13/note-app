@@ -1,37 +1,37 @@
-import React,{useState} from 'react'
-
-function AddNote({addNote}) {
-    const [noteText , setNoteText] = useState('');
+function AddNote({addNote , isUpdating , setInputValue , inputValue , handleUpdate}) {
     const maxWord = 150;
+
     const handleNoteText = (e) => {
-        if(maxWord - noteText.length > 0)
-        setNoteText(e.target.value);
+        if(maxWord - inputValue.length > 0)
+        setInputValue(e.target.value);
     }
 
     const handleAddNote = () => {
-        if(noteText.trim().length > 0){
-            addNote(noteText);
-            setNoteText('');
+        if(inputValue.trim().length > 0){
+            addNote(inputValue);
+            setInputValue(inputValue);
+            setInputValue('');
         }
     }
 
-
-  return (
+    return (
     <div className='note new'>
         <div className='note-list'>
             <textarea 
             cols="10" 
             rows="8"
-            value={noteText}
+            value={inputValue}
             placeholder='Type to add note...'
             onChange={handleNoteText}
             >
-
             </textarea>
-        </div>
+       </div>
         <div className='note-footer'>
-            <small>{maxWord - noteText.length} word remaining</small>
-            <button className='save-btn' onClick={handleAddNote}>Save</button>
+            <small>{maxWord - inputValue.length} word remaining</small>
+            {  isUpdating ? 
+                <button className='edit-btn' onClick={handleUpdate}>Save</button>
+                :<button className='save-btn' onClick={handleAddNote}>Add</button>
+            }
 
         </div>
     </div>

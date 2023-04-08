@@ -81,8 +81,14 @@ textarea:focus{
     font-size: 1.5rem;
 }
 
-.delete-btn:hover{
+.delete-btn:hover , .edit-btn:hover{
     cursor: pointer;
+}
+
+.edit-btn{
+    border: none;
+    padding: 0.3rem;
+    border-radius: 10px;
 }
 
 .search{
@@ -140,4 +146,51 @@ textarea:focus{
 
 .active{
     transform: translateY(0%);
+}
+
+.theme-container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.theme{
+    width: 25px;
+    height: 25px;
+    border-radius:50%;
+    background-color: red;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    border: 2px dotted #ddd;
+}
+
+.theme:hover{
+    transform: scale(1.5);
+}
+
+
+.dark-mode-btn{
+  width: 50px;
+}
+
+.moon-icon , .sun-icon{
+    font-size: 1.2rem;
+}
+
+.sun-icon{
+    animation: rotate 5s linear infinite;
+}
+
+.moon-icon:hover{
+    transition: transform 0.3s ease;
+    transform: translateY(100%);
+}
+
+@keyframes  rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
 }

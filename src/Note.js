@@ -4,12 +4,13 @@ import { FiEdit } from 'react-icons/fi';
 
 
 
-function Note({text , id , date , handleDeleteNote , handleEdit}) {
+function Note({note , handleDeleteNote , handleEdit}) {
+ 
   const formatText = (str) => {
     return str.slice(0 ,1).toUpperCase() + str.slice(1)
   }
-
-
+ 
+  const {text , date , id} = note;
   return (
     <div className='note' key={id}>
         <div className='note-text'>

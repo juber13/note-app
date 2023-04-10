@@ -41,6 +41,13 @@ html,body{
     min-height: 170px;
     border-radius: 10px;
     white-space: pre-wrap;
+    box-shadow: 4px 3px 10px #ddd;
+    border-left:5px solid #dedb25;
+    transition:all 0.4s ease;
+}
+
+.note:hover{
+    box-shadow: none;
 }
 
 .note-footer{
@@ -51,6 +58,7 @@ html,body{
 
 .note.new{
     background-color:#67d7cc;
+    border: none;
 
 }
 
@@ -152,6 +160,11 @@ textarea:focus{
     display: flex;
     align-items: center;
     gap: 5px;
+    background: #fff;
+    border: 2px solid #ddd;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 .theme{

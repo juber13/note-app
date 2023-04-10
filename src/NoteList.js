@@ -6,7 +6,7 @@ function NoteList({notes , addNote , handleDeleteNote , handleEdit , isUpdating 
   return (
     <div className='note-list'>
         {notes.map((note) => {
-            return <Note text={note.text} id={note.id} date={note.date} handleDeleteNote={handleDeleteNote} handleEdit={handleEdit}/>
+            return <Note note={note} handleDeleteNote={handleDeleteNote} handleEdit={handleEdit}/>
         })}
         <AddNote addNote={addNote} isUpdating={isUpdating} setInputValue={setInputValue} inputValue={inputValue} handleUpdate={handleUpdate}/>
     </div>

@@ -14,6 +14,8 @@ function AddNote({addNote , isUpdating , setInputValue , inputValue , handleUpda
         }
     }
 
+    
+
     return (
     <div className='note new'>
         <div className='note-list'>

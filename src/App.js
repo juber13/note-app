@@ -20,6 +20,7 @@ function App() {
   const [inputValue , setInputValue] = useState('');
   const [index , setIndex] = useState(0)
   const [color , setColor] = useState('');
+  // const [text , setText] = useState({});
 
   const addNote = (text) => {
     setShowFlash(true)
@@ -31,7 +32,6 @@ function App() {
       date : date.toLocaleDateString(),
     }
 
-    console.log(notes);
 
     const newNotes = [...notes , newNote];
     setNotes(newNotes);
@@ -42,7 +42,6 @@ function App() {
   useEffect(() => {
     const saveNotes = JSON.parse(localStorage.getItem('notes'));
     if(saveNotes) setNotes(saveNotes);
-    // if(darkMode)  setColor("#000");
    },[])
 
    const addLoLocalStorage = (note) => {
@@ -58,9 +57,11 @@ function App() {
      setMessage("Note deleted!");
   }
 
+  useEffect(() => {
   setTimeout(() => {
     setShowFlash(false);
   }, 1000);
+  },[notes])
 
 
   const handleEdit = (id) => {
@@ -83,7 +84,7 @@ function App() {
   }
 
   return (
-    <div className={`${darkMode && 'dark-mode'}`} style={{backgroundColor : color}}>
+    <div style={{backgroundColor : color}}>
       <div className="container">
         <Header handleDarkMode={setDarkMode} setColor={setColor} darkMode={darkMode}/>
         <Search setSearchText={setSearchText}/>

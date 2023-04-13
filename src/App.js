@@ -74,6 +74,7 @@ function App() {
     if(inputValue.trim().length > 0){
       const newNotes = [...notes];
       newNotes[index].text = inputValue;
+      newNotes[index].date = new Date().toLocaleDateString();
       setNotes(newNotes);
       setInputValue("");
       addLoLocalStorage(newNotes);
@@ -84,7 +85,7 @@ function App() {
   }
 
   return (
-    <div style={{backgroundColor : color}}>
+    <div style={{backgroundColor : color}} className={darkMode ? "dark-mode" : ""}>
       <div className="container">
         <Header handleDarkMode={setDarkMode} setColor={setColor} darkMode={darkMode}/>
         <Search setSearchText={setSearchText}/>

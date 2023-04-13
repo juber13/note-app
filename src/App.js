@@ -19,7 +19,7 @@ function App() {
   const [isUpdating , setUpdating] = useState(false);
   const [inputValue , setInputValue] = useState('');
   const [index , setIndex] = useState(0)
-  const [color , setColor] = useState('');
+  const [color , setColor] = useState("");
   // const [text , setText] = useState({});
 
   const addNote = (text) => {

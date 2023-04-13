@@ -193,12 +193,6 @@ textarea:focus{
 .sun-icon{
     animation: rotate 5s linear infinite;
 }
-
-.moon-icon:hover{
-    transition: transform 0.3s ease;
-    transform: translateY(100%);
-}
-
 @keyframes  rotate{
     from{
         transform: rotate(0deg);
